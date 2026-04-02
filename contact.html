@@ -42,11 +42,15 @@
                 <h3>Send Us a Message</h3>
 
                 <div class="content">
-                    <form class="contact-form" action="#" method="post">
+                    <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true"
+                        netlify-honeypot="bot-field">
+
+                        <input type="hidden" name="form-name" value="contact">
+                        <input type="hidden" name="bot-field">
 
                         <div class="form-group">
                             <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
                         </div>
 
                         <div class="form-group">
@@ -66,7 +70,6 @@
                         </div>
 
                         <button type="submit">Send Message</button>
-
                     </form>
                 </div>
             </section>
@@ -77,6 +80,23 @@
         <p>&copy; 2026 Eagle PRNDL</p>
     </footer>
 
+    <script>
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            await fetch("/", {
+                method: "POST",
+                body: formData
+            });
+
+            alert("Form submitted successfully!");
+            form.reset();
+        });
+    </script>
 </body>
 
 </html>

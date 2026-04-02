@@ -166,6 +166,8 @@ footer {
     padding: 2rem 1rem;
     border-top: 1px solid #ddd;
     font-size: 0.9rem;
+    background-color: var(--accent);
+    color: #ffffff;
 }
 
 
